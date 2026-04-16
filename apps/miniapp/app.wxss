@@ -1,0 +1,92 @@
+page {
+  background: linear-gradient(180deg, #fbf6ef 0%, #f0e6d7 100%);
+  color: #233033;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.page-shell {
+  padding: 28rpx;
+}
+
+.hero {
+  padding: 32rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 252, 247, 0.92);
+  box-shadow: 0 16rpx 40rpx rgba(74, 55, 36, 0.12);
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 14rpx;
+  padding: 8rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(47, 107, 95, 0.12);
+  color: #2f6b5f;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.title {
+  margin-bottom: 16rpx;
+  font-size: 48rpx;
+  font-weight: 700;
+  line-height: 1.18;
+}
+
+.desc {
+  color: #5f6b6c;
+  font-size: 28rpx;
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  gap: 20rpx;
+  margin-top: 24rpx;
+}
+
+.card {
+  padding: 24rpx;
+  border-radius: 24rpx;
+  background: rgba(255, 252, 247, 0.92);
+  box-shadow: 0 10rpx 26rpx rgba(74, 55, 36, 0.08);
+}
+
+.card-title {
+  display: block;
+  margin-bottom: 8rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.card-desc {
+  color: #617072;
+  font-size: 26rpx;
+  line-height: 1.65;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 240rpx;
+  padding: 24rpx;
+  border-radius: 22rpx;
+  background: #ffffff;
+}
+
+.button {
+  margin-top: 20rpx;
+  padding: 22rpx 0;
+  border-radius: 999rpx;
+  background: #d95d39;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 700;
+}
+
+.result {
+  margin-top: 18rpx;
+  padding: 22rpx;
+  border-radius: 22rpx;
+  background: rgba(47, 107, 95, 0.1);
+}
+

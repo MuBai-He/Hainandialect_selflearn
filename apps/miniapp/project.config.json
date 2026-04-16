@@ -1,0 +1,11 @@
+{
+  "description": "Hainan dialect learning mini program scaffold",
+  "compileType": "miniprogram",
+  "miniprogramRoot": "./",
+  "setting": {
+    "es6": true,
+    "postcss": true,
+    "minified": true
+  }
+}
+

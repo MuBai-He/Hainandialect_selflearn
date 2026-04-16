@@ -1,0 +1,14 @@
+<view class="page-shell">
+  <view class="hero">
+    <view class="eyebrow">Translate Demo</view>
+    <view class="title">小程序端翻译入口</view>
+    <view class="desc">第一阶段先走文本翻译，后面再加语音输入和播报。</view>
+  </view>
+
+  <view class="card">
+    <textarea class="textarea" value="{{sourceText}}" bindinput="onInput" placeholder="请输入普通话或海南话文本" />
+    <view class="button" bindtap="handleTranslate">开始翻译</view>
+    <view class="result">{{resultText}}</view>
+  </view>
+</view>
+

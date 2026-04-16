@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: hainan-dialect-platform-api
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/hainan_dialect_platform?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:platform}
+    password: ${DB_PASSWORD:platform123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  jackson:
+    default-property-inclusion: non_null
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+jwt:
+  secret: ${JWT_SECRET:school-race-hainan-dialect-platform-jwt-secret-2026-change-me}
+  expiration-hours: ${JWT_EXPIRATION_HOURS:168}
+
+app:
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://127.0.0.1:5173,http://localhost:5174}
+
+audio:
+  dataset-root: ${AUDIO_DATASET_ROOT:./data/audio-dataset/}
+  public-base-url: ${AUDIO_PUBLIC_BASE_URL:http://localhost:8080/media/audio/}

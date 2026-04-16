@@ -1,0 +1,15 @@
+<view class="page-shell">
+  <view class="hero">
+    <view class="eyebrow">Learning Flow</view>
+    <view class="title">学习路径建议先做三级。</view>
+    <view class="desc">每一级都围绕词汇、对话、发音和复习报告展开。</view>
+  </view>
+
+  <view class="grid">
+    <view class="card" wx:for="{{stages}}" wx:key="title">
+      <text class="card-title">{{item.title}}</text>
+      <text class="card-desc">{{item.desc}}</text>
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,15 @@
+<view class="page-shell">
+  <view class="hero">
+    <view class="eyebrow">Profile</view>
+    <view class="title">学习数据会在这里聚合。</view>
+    <view class="desc">后续会接入进度图、积分、收藏和投稿记录。</view>
+  </view>
+
+  <view class="grid">
+    <view class="card" wx:for="{{stats}}" wx:key="label">
+      <text class="card-title">{{item.value}}</text>
+      <text class="card-desc">{{item.label}}</text>
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,17 @@
+<view class="page-shell">
+  <view class="hero">
+    <view class="eyebrow">Mini Program MVP</view>
+    <view class="title">先把海南话学习做成一个能持续使用的产品。</view>
+    <view class="desc">
+      当前骨架已经预留学习、翻译、文化和个人中心四个主要入口。
+    </view>
+  </view>
+
+  <view class="grid">
+    <view class="card" wx:for="{{modules}}" wx:key="title">
+      <text class="card-title">{{item.title}}</text>
+      <text class="card-desc">{{item.desc}}</text>
+    </view>
+  </view>
+</view>
+
