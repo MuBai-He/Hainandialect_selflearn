@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { isAuthenticated } from "../lib/session";
 import AboutProjectView from "../views/AboutProjectView.vue";
 import CultureArchiveView from "../views/CultureArchiveView.vue";
+import DialectRecognizerView from "../views/DialectRecognizerView.vue";
 import DictionaryView from "../views/DictionaryView.vue";
 import HomeView from "../views/HomeView.vue";
 import LearningReportView from "../views/LearningReportView.vue";
@@ -34,6 +35,11 @@ const router = createRouter({
       component: LessonDetailView,
     },
     { path: "/translate", name: "translate", component: TranslateView },
+    {
+      path: "/recognize",
+      name: "dialect-recognizer",
+      component: DialectRecognizerView,
+    },
     {
       path: "/profile",
       name: "profile",

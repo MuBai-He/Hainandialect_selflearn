@@ -109,6 +109,7 @@ const primaryNavLinks = [
   { label: "首页", to: "/" },
   { label: "学习中心", to: "/learning" },
   { label: "基础翻译", to: "/translate" },
+  { label: "语音识别", to: "/recognize" },
   { label: "个人中心", to: "/profile" },
 ];
 
