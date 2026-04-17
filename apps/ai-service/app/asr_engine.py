@@ -31,11 +31,14 @@ _RICH_RE = re.compile(r"<\|([^|]+)\|>")
 
 # Sensible defaults that match this repo's layout. First match wins.
 _DEFAULT_CANDIDATES = (
-    # new model (Run1 — best on unseen vocabulary)
+    # Co-deployed model inside this repo (standard drop-in after download_model.sh).
+    "models/sensevoice_hainan_best_deploy",
+    # Fall back to the sibling training repo when we are running directly from a
+    # developer checkout that has FunASRfinetune-c next to it.
     "hainan_asr/outputs/sensevoice_hainan_run1_noSynth/best_deploy",
-    # new model (Run2 — higher seen-vocabulary accuracy, tiny loss on unseen)
     "hainan_asr/outputs/sensevoice_hainan_run2_synth/best_deploy",
-    # upstream baseline as last resort so the service still boots for health checks
+    # Upstream baseline — lets the service boot for health checks even without
+    # the fine-tuned weights. Practically unusable for Hainanese.
     "models/iic/SenseVoiceSmall",
 )
 

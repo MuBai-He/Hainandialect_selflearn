@@ -46,6 +46,62 @@
 { "type": "error",   "detail": "..." }
 ```
 
+## 模型下载
+
+模型文件(893MB 的 `model.pt` + tokenizer/config 等 6 个文件)**不在仓库里**,因为
+GitHub 单文件上限 100MB。项目作者把模型打包发到自己的网盘/云空间,用之前需要先下载。
+
+### 两个可选模型
+
+| 文件 | 大小 | MD5 | 适用场景 |
+|---|---|---|---|
+| `sensevoice_hainan_v1_best_deploy.zip` | 828 MB | `6f112feacbe19d50cd26f3a89bb4e8d4` | **默认推荐**,未见词 CER 0.47,通用性最好 |
+| `sensevoice_hainan_v2_best_deploy.zip` | 828 MB | `ca6f77bb40c4ca49d1d01d8a05a9acbe` | 闭集词汇更准(已见词 90% 完全对),未见词略退 |
+
+> 👉 下载链接请找项目作者索取(网盘/云空间)。如果两个都下载,启动时用 `HAINAN_ASR_MODEL_DIR`
+> 指向任一解压目录即可切换。
+
+### 用 `download_model.sh` 半自动下载(推荐)
+
+把你拿到的下载直链填到环境变量 `HAINAN_MODEL_URL`,然后:
+
+```bash
+HAINAN_MODEL_URL=<你的直链> \
+HAINAN_MODEL_MD5=6f112feacbe19d50cd26f3a89bb4e8d4 \
+bash apps/ai-service/download_model.sh
+```
+
+脚本会下载、校验 MD5、解压到默认位置 `models/sensevoice_hainan_best_deploy/`,
+并打印出接下来启动服务时要用的环境变量。
+
+### 手动下载 + 放置
+
+如果直接手动操作,也可以:
+
+```bash
+# 1. 从网盘下载并解压
+unzip sensevoice_hainan_v1_best_deploy.zip -d /path/to/somewhere
+
+# 2. 启动服务时通过环境变量指向解压出的 best_deploy/
+HAINAN_ASR_MODEL_DIR=/path/to/somewhere/best_deploy npm run dev:ai
+```
+
+建议的目录布局(方便服务自动发现):
+
+```
+Hainandialect_selflearn/
+└─ models/
+   └─ sensevoice_hainan_best_deploy/    <── 把解压出的 best_deploy 重命名放这里
+      ├─ model.pt
+      ├─ config.yaml
+      ├─ configuration.json
+      ├─ am.mvn
+      ├─ tokens.json
+      └─ chn_jpn_yue_eng_ko_spectok.bpe.model
+```
+
+然后就不用显式设 `HAINAN_ASR_MODEL_DIR` 也能跑(加载器会自动发现 `models/` 下的目录)。
+
 ## 启动服务
 
 推荐复用训练时搭好的 `hainan_asr` conda 环境(里面已经有 `funasr`、`torch` 等),

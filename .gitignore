@@ -23,3 +23,8 @@ tmp/
 temp/
 minio/
 data/
+
+# Fine-tuned ASR model bundle (893MB, too large for GitHub — distributed via cloud drive).
+# See apps/ai-service/README.md for download instructions.
+models/sensevoice_hainan_best_deploy/
+models/sensevoice_hainan_*/
