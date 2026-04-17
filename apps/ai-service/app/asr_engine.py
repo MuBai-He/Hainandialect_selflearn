@@ -35,6 +35,10 @@ _DEFAULT_CANDIDATES = (
     "models/sensevoice_hainan_best_deploy",
     # Fall back to the sibling training repo when we are running directly from a
     # developer checkout that has FunASRfinetune-c next to it.
+    # v4 — 267 long sentences added, best checkpoint overall (valid CER 0.22).
+    "hainan_asr/outputs/sensevoice_hainan_run4_sentence/deploy_ep17_cer0p223",
+    "hainan_asr/outputs/sensevoice_hainan_run4_sentence/best_deploy",
+    # Earlier runs (kept for debugging / A-B comparison).
     "hainan_asr/outputs/sensevoice_hainan_run1_noSynth/best_deploy",
     "hainan_asr/outputs/sensevoice_hainan_run2_synth/best_deploy",
     # Upstream baseline — lets the service boot for health checks even without
