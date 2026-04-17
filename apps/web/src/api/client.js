@@ -1,7 +1,9 @@
 import { clearSession, getAuthHeader } from "../lib/session";
 
-export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+// Default to same-origin so the Vite dev-server proxy (or a production reverse
+// proxy) can route `/api/*` to the Spring Boot gateway. Override with
+// VITE_API_BASE_URL="http://foo:8080" when calling a different origin.
+export const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "");
 
 export async function apiRequest(path, options = {}) {
   const {

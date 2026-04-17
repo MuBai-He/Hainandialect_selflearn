@@ -5,30 +5,31 @@
 // win here. Swap to a gateway later if auth/ACL ever become real requirements.
 
 // Resolves the AI service base URL in this order:
-//  1. VITE_AI_SERVICE_URL env var (recommended in production)
-//  2. Same host the page is served from, port 8001 (works for LAN/remote access
-//     without any env configuration — as long as the ai-service binds 0.0.0.0)
-//  3. Hard-coded localhost:8001 fallback (last resort, SSR or file:// contexts)
+//   1. VITE_AI_SERVICE_URL env var — use when the service lives on a different
+//      origin than the page (e.g. cross-origin dev setup without Vite proxy).
+//   2. Same-origin, prefixed `/ai` — the default that works with the Vite dev
+//      server's built-in proxy and with a production reverse proxy that routes
+//      `/ai/*` to the FastAPI service.
 function resolveAiServiceUrl() {
   const fromEnv = import.meta.env.VITE_AI_SERVICE_URL;
   if (fromEnv) return String(fromEnv).replace(/\/$/, "");
-  if (typeof window !== "undefined" && window.location?.hostname) {
-    const host = window.location.hostname;
-    // page is https → the ai-service reverse-proxy should also be https; in that
-    // case set VITE_AI_SERVICE_URL explicitly. For plain dev we assume http.
-    const proto = window.location.protocol === "https:" ? "https:" : "http:";
-    return `${proto}//${host}:8001`;
+  if (typeof window !== "undefined" && window.location?.origin) {
+    return window.location.origin + "/ai";
   }
-  return "http://localhost:8001";
+  return "/ai";
 }
 
 export const AI_SERVICE_URL = resolveAiServiceUrl();
 
 function wsUrl(path) {
-  // Convert http(s) → ws(s) preserving host/port.
-  const url = new URL(path, AI_SERVICE_URL);
-  url.protocol = url.protocol === "https:" ? "wss:" : "ws:";
-  return url.toString();
+  // Concatenate (don't use `new URL(path, base)` — absolute paths would strip
+  // the `/ai` mount prefix). Convert http(s) → ws(s) preserving host/port.
+  let base = AI_SERVICE_URL;
+  if (!/^https?:/i.test(base) && typeof window !== "undefined") {
+    base = window.location.origin + (base.startsWith("/") ? base : "/" + base);
+  }
+  const full = base.replace(/\/$/, "") + path;
+  return full.replace(/^http(s?):/i, (_m, s) => "ws" + s + ":");
 }
 
 export async function checkAiServiceHealth() {
